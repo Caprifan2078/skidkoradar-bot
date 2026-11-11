@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - '.github/import/part05.b64'
+      - '.github/workflows/direct-import.yml'
   workflow_dispatch:
 
 permissions:
@@ -57,7 +58,7 @@ jobs:
               for f in temp.rglob('*'):
                   if f.is_file():
                       relative = f.relative_to(temp)
-                      if relative.as_posix() == 'README.md':
+                      if relative.as_posix() in ('README.md', '.github/workflows/tests.yml'):
                           continue
                       dest = Path.cwd() / relative
                       dest.parent.mkdir(parents=True, exist_ok=True)
